@@ -1,11 +1,21 @@
 # Blue-Lagoon-Crypter
+![Blue Lagoon Crypter](https://github.com/lxcalbxy/Blue-Lagoon-Crypter/assets/71847945/43b32cea-5182-442a-8130-57d0152e3395)
+
+
+
 Training project for educational purposes. The project represents a crypter that should take your PE as an input, take  it as the payload, and inject the payload in the self-decrypting stub. Once the stub is compiled by crypter, it should decrypt the payload in runtime, executing it step by step. [Fixing] [Debugging]
 
+
+
 Work in progress.
+
+
 
 Now i am struggling with payload not being injected in the stub when compiled.
 The Key and IV being injected in the Stub sucessfully, but something is going wrong with convertation or decryption.
 Will appreciate any helpful comments! ;) ty <3
+
+
 
 TO DO:
 - Fix payload convertation, decryption & placement to the placeholder "%BASE64%". [STUB]
