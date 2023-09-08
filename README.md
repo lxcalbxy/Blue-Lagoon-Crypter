@@ -1,5 +1,6 @@
 # Blue-Lagoon-Crypter
-![Blue Lagoon Crypter](https://github.com/lxcalbxy/Blue-Lagoon-Crypter/assets/71847945/43b32cea-5182-442a-8130-57d0152e3395)
+![Blue Lagoon Crypter](https://github.com/lxcalbxy/Blue-Lagoon-Crypter/assets/71847945/63132c59-ed0d-4f7c-aec4-00fb346f809f)
+
 
 
 
