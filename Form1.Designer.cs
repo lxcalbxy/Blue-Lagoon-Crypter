@@ -112,7 +112,7 @@
             this.windowPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.windowPanel.Location = new System.Drawing.Point(0, 0);
             this.windowPanel.Name = "windowPanel";
-            this.windowPanel.Size = new System.Drawing.Size(717, 41);
+            this.windowPanel.Size = new System.Drawing.Size(761, 41);
             this.windowPanel.TabIndex = 2;
             this.windowPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mouseDown);
             // 
@@ -121,9 +121,9 @@
             this.help_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.help_button.Font = new System.Drawing.Font("Crafter", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.help_button.ForeColor = System.Drawing.Color.Black;
-            this.help_button.Location = new System.Drawing.Point(617, 5);
+            this.help_button.Location = new System.Drawing.Point(672, 5);
             this.help_button.Name = "help_button";
-            this.help_button.Size = new System.Drawing.Size(52, 33);
+            this.help_button.Size = new System.Drawing.Size(39, 31);
             this.help_button.TabIndex = 11;
             this.help_button.Text = "?";
             this.help_button.UseVisualStyleBackColor = true;
@@ -135,9 +135,9 @@
             // 
             this.exit_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.exit_button.Font = new System.Drawing.Font("Crafter", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exit_button.Location = new System.Drawing.Point(675, 5);
+            this.exit_button.Location = new System.Drawing.Point(717, 5);
             this.exit_button.Name = "exit_button";
-            this.exit_button.Size = new System.Drawing.Size(39, 32);
+            this.exit_button.Size = new System.Drawing.Size(39, 31);
             this.exit_button.TabIndex = 4;
             this.exit_button.Text = "X";
             this.exit_button.UseVisualStyleBackColor = true;
@@ -163,7 +163,7 @@
             this.server_path_label.AutoSize = true;
             this.server_path_label.Font = new System.Drawing.Font("Anita  Semi-square", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.server_path_label.ForeColor = System.Drawing.Color.White;
-            this.server_path_label.Location = new System.Drawing.Point(44, 84);
+            this.server_path_label.Location = new System.Drawing.Point(27, 84);
             this.server_path_label.Name = "server_path_label";
             this.server_path_label.Size = new System.Drawing.Size(144, 27);
             this.server_path_label.TabIndex = 3;
@@ -274,9 +274,9 @@
             // buildHighlight
             // 
             this.buildHighlight.BackColor = System.Drawing.Color.Black;
-            this.buildHighlight.Location = new System.Drawing.Point(200, 367);
+            this.buildHighlight.Location = new System.Drawing.Point(206, 367);
             this.buildHighlight.Name = "buildHighlight";
-            this.buildHighlight.Size = new System.Drawing.Size(405, 5);
+            this.buildHighlight.Size = new System.Drawing.Size(392, 5);
             this.buildHighlight.TabIndex = 10;
             // 
             // Form1
@@ -284,7 +284,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Desktop;
-            this.ClientSize = new System.Drawing.Size(717, 411);
+            this.ClientSize = new System.Drawing.Size(761, 411);
             this.Controls.Add(this.IV_gen_label);
             this.Controls.Add(this.genIvBox);
             this.Controls.Add(this.genIV);

