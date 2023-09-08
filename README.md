@@ -1,10 +1,19 @@
 # Blue-Lagoon-Crypter
+[Fixing] [Debugging]
 ![Blue Lagoon Crypter](https://github.com/lxcalbxy/Blue-Lagoon-Crypter/assets/71847945/63132c59-ed0d-4f7c-aec4-00fb346f809f)
 
 
 
 
-Training project for educational purposes. The project represents a crypter that should take your PE as an input, take  it as the payload, and inject the payload in the self-decrypting stub. Once the stub is compiled by crypter, it should decrypt the payload in runtime, executing it step by step. [Fixing] [Debugging]
+Training project for educational purposes. The project represents a crypter.
+|Program workflow|
+
+1. Take an executable as an input.
+2. Read bytes from that executable
+3. Convert the bytes to base64 format
+4. Encrypt the base64 string with AES encryption
+5. Pass the encrypted base64 sting to the stub file
+6. The compiler itself will try Using this stub file to compile a final product that will have: Stub itself + encrypted base64 string that represents the input file.
 
 
 
