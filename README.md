@@ -13,7 +13,7 @@ Work in progress.
 
 
 Now i am struggling with payload not being injected in the stub when compiled.
-The Key and IV being injected in the Stub sucessfully, but something is going wrong with convertation or decryption.
+The Key and IV being injected in the Stub sucessfully, but something is going wrong with convertation or decryption of BASE64 payload data.
 Will appreciate any helpful comments! ;) ty <3
 
 
