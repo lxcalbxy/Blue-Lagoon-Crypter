@@ -33,6 +33,7 @@
             this.button_select_icon = new System.Windows.Forms.Button();
             this.icon_path = new System.Windows.Forms.TextBox();
             this.windowPanel = new System.Windows.Forms.Panel();
+            this.help_button = new System.Windows.Forms.Button();
             this.exit_button = new System.Windows.Forms.Button();
             this.windowName = new System.Windows.Forms.Label();
             this.server_path_label = new System.Windows.Forms.Label();
@@ -45,7 +46,6 @@
             this.genIvBox = new System.Windows.Forms.TextBox();
             this.genIV = new System.Windows.Forms.Button();
             this.buildHighlight = new System.Windows.Forms.Panel();
-            this.help_button = new System.Windows.Forms.Button();
             this.windowPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,10 +68,10 @@
             // 
             this.server_path.Font = new System.Drawing.Font("Anita  Semi-square", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.server_path.Location = new System.Drawing.Point(200, 83);
-            this.server_path.MinimumSize = new System.Drawing.Size(0, 33);
+            this.server_path.MinimumSize = new System.Drawing.Size(4, 33);
             this.server_path.Name = "server_path";
             this.server_path.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.server_path.Size = new System.Drawing.Size(225, 33);
+            this.server_path.Size = new System.Drawing.Size(225, 25);
             this.server_path.TabIndex = 1;
             this.server_path.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.server_path.WordWrap = false;
@@ -96,10 +96,10 @@
             // 
             this.icon_path.Font = new System.Drawing.Font("Anita  Semi-square", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.icon_path.Location = new System.Drawing.Point(200, 147);
-            this.icon_path.MinimumSize = new System.Drawing.Size(0, 33);
+            this.icon_path.MinimumSize = new System.Drawing.Size(4, 33);
             this.icon_path.Name = "icon_path";
             this.icon_path.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.icon_path.Size = new System.Drawing.Size(225, 33);
+            this.icon_path.Size = new System.Drawing.Size(225, 25);
             this.icon_path.TabIndex = 1;
             this.icon_path.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -115,6 +115,21 @@
             this.windowPanel.Size = new System.Drawing.Size(717, 41);
             this.windowPanel.TabIndex = 2;
             this.windowPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mouseDown);
+            // 
+            // help_button
+            // 
+            this.help_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.help_button.Font = new System.Drawing.Font("Crafter", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.help_button.ForeColor = System.Drawing.Color.Black;
+            this.help_button.Location = new System.Drawing.Point(617, 5);
+            this.help_button.Name = "help_button";
+            this.help_button.Size = new System.Drawing.Size(52, 33);
+            this.help_button.TabIndex = 11;
+            this.help_button.Text = "?";
+            this.help_button.UseVisualStyleBackColor = true;
+            this.help_button.Click += new System.EventHandler(this.mouseClickHelp);
+            this.help_button.MouseEnter += new System.EventHandler(this.mouseEnterHelp);
+            this.help_button.MouseLeave += new System.EventHandler(this.mouseLeaveHelp);
             // 
             // exit_button
             // 
@@ -138,9 +153,9 @@
             this.windowName.ForeColor = System.Drawing.Color.Black;
             this.windowName.Location = new System.Drawing.Point(-4, -3);
             this.windowName.Name = "windowName";
-            this.windowName.Size = new System.Drawing.Size(473, 49);
+            this.windowName.Size = new System.Drawing.Size(491, 49);
             this.windowName.TabIndex = 3;
-            this.windowName.Text = "Bue Lagoon Crypt (WIP)";
+            this.windowName.Text = "Blue Lagoon Crypt (WIP)";
             this.windowName.Click += new System.EventHandler(this.label3_Click);
             // 
             // server_path_label
@@ -197,10 +212,10 @@
             // 
             this.keyGenBox.Font = new System.Drawing.Font("Anita  Semi-square", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.keyGenBox.Location = new System.Drawing.Point(200, 210);
-            this.keyGenBox.MinimumSize = new System.Drawing.Size(0, 33);
+            this.keyGenBox.MinimumSize = new System.Drawing.Size(4, 33);
             this.keyGenBox.Name = "keyGenBox";
             this.keyGenBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.keyGenBox.Size = new System.Drawing.Size(225, 33);
+            this.keyGenBox.Size = new System.Drawing.Size(225, 25);
             this.keyGenBox.TabIndex = 5;
             this.keyGenBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -234,10 +249,10 @@
             // 
             this.genIvBox.Font = new System.Drawing.Font("Anita  Semi-square", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.genIvBox.Location = new System.Drawing.Point(200, 273);
-            this.genIvBox.MinimumSize = new System.Drawing.Size(0, 33);
+            this.genIvBox.MinimumSize = new System.Drawing.Size(4, 33);
             this.genIvBox.Name = "genIvBox";
             this.genIvBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.genIvBox.Size = new System.Drawing.Size(225, 33);
+            this.genIvBox.Size = new System.Drawing.Size(225, 25);
             this.genIvBox.TabIndex = 8;
             this.genIvBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -263,21 +278,6 @@
             this.buildHighlight.Name = "buildHighlight";
             this.buildHighlight.Size = new System.Drawing.Size(405, 5);
             this.buildHighlight.TabIndex = 10;
-            // 
-            // help_button
-            // 
-            this.help_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.help_button.Font = new System.Drawing.Font("Crafter", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.help_button.ForeColor = System.Drawing.Color.Black;
-            this.help_button.Location = new System.Drawing.Point(617, 5);
-            this.help_button.Name = "help_button";
-            this.help_button.Size = new System.Drawing.Size(52, 33);
-            this.help_button.TabIndex = 11;
-            this.help_button.Text = "?";
-            this.help_button.UseVisualStyleBackColor = true;
-            this.help_button.Click += new System.EventHandler(this.mouseClickHelp);
-            this.help_button.MouseEnter += new System.EventHandler(this.mouseEnterHelp);
-            this.help_button.MouseLeave += new System.EventHandler(this.mouseLeaveHelp);
             // 
             // Form1
             // 
