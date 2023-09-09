@@ -46,7 +46,15 @@
             this.genIvBox = new System.Windows.Forms.TextBox();
             this.genIV = new System.Windows.Forms.Button();
             this.buildHighlight = new System.Windows.Forms.Panel();
+            this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
+            this.pictureBoxPayload = new System.Windows.Forms.PictureBox();
+            this.checkBoxPersistence = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.windowPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPayload)).BeginInit();
             this.SuspendLayout();
             // 
             // button_select_server
@@ -54,9 +62,9 @@
             this.button_select_server.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_select_server.Font = new System.Drawing.Font("Anita  Semi-square", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_select_server.ForeColor = System.Drawing.Color.White;
-            this.button_select_server.Location = new System.Drawing.Point(459, 83);
+            this.button_select_server.Location = new System.Drawing.Point(200, 114);
             this.button_select_server.Name = "button_select_server";
-            this.button_select_server.Size = new System.Drawing.Size(146, 33);
+            this.button_select_server.Size = new System.Drawing.Size(380, 33);
             this.button_select_server.TabIndex = 0;
             this.button_select_server.Text = "Select";
             this.button_select_server.UseVisualStyleBackColor = true;
@@ -68,10 +76,9 @@
             // 
             this.server_path.Font = new System.Drawing.Font("Anita  Semi-square", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.server_path.Location = new System.Drawing.Point(200, 83);
-            this.server_path.MinimumSize = new System.Drawing.Size(4, 33);
             this.server_path.Name = "server_path";
             this.server_path.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.server_path.Size = new System.Drawing.Size(225, 25);
+            this.server_path.Size = new System.Drawing.Size(380, 25);
             this.server_path.TabIndex = 1;
             this.server_path.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.server_path.WordWrap = false;
@@ -82,9 +89,9 @@
             this.button_select_icon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_select_icon.Font = new System.Drawing.Font("Anita  Semi-square", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_select_icon.ForeColor = System.Drawing.Color.White;
-            this.button_select_icon.Location = new System.Drawing.Point(459, 147);
+            this.button_select_icon.Location = new System.Drawing.Point(200, 229);
             this.button_select_icon.Name = "button_select_icon";
-            this.button_select_icon.Size = new System.Drawing.Size(146, 33);
+            this.button_select_icon.Size = new System.Drawing.Size(380, 33);
             this.button_select_icon.TabIndex = 0;
             this.button_select_icon.Text = "Select";
             this.button_select_icon.UseVisualStyleBackColor = true;
@@ -95,11 +102,10 @@
             // icon_path
             // 
             this.icon_path.Font = new System.Drawing.Font("Anita  Semi-square", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.icon_path.Location = new System.Drawing.Point(200, 147);
-            this.icon_path.MinimumSize = new System.Drawing.Size(4, 33);
+            this.icon_path.Location = new System.Drawing.Point(200, 198);
             this.icon_path.Name = "icon_path";
             this.icon_path.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.icon_path.Size = new System.Drawing.Size(225, 25);
+            this.icon_path.Size = new System.Drawing.Size(380, 25);
             this.icon_path.TabIndex = 1;
             this.icon_path.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -112,7 +118,7 @@
             this.windowPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.windowPanel.Location = new System.Drawing.Point(0, 0);
             this.windowPanel.Name = "windowPanel";
-            this.windowPanel.Size = new System.Drawing.Size(761, 41);
+            this.windowPanel.Size = new System.Drawing.Size(763, 41);
             this.windowPanel.TabIndex = 2;
             this.windowPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mouseDown);
             // 
@@ -175,7 +181,7 @@
             this.icon_path_label.AutoSize = true;
             this.icon_path_label.Font = new System.Drawing.Font("Anita  Semi-square", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.icon_path_label.ForeColor = System.Drawing.Color.White;
-            this.icon_path_label.Location = new System.Drawing.Point(78, 148);
+            this.icon_path_label.Location = new System.Drawing.Point(78, 198);
             this.icon_path_label.Name = "icon_path_label";
             this.icon_path_label.Size = new System.Drawing.Size(93, 27);
             this.icon_path_label.TabIndex = 3;
@@ -187,9 +193,9 @@
             this.button_build.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_build.Font = new System.Drawing.Font("Anita  Semi-square", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_build.ForeColor = System.Drawing.Color.White;
-            this.button_build.Location = new System.Drawing.Point(200, 335);
+            this.button_build.Location = new System.Drawing.Point(200, 554);
             this.button_build.Name = "button_build";
-            this.button_build.Size = new System.Drawing.Size(405, 33);
+            this.button_build.Size = new System.Drawing.Size(380, 33);
             this.button_build.TabIndex = 0;
             this.button_build.Text = "Build";
             this.button_build.UseVisualStyleBackColor = true;
@@ -202,7 +208,7 @@
             this.key_gen_label.AutoSize = true;
             this.key_gen_label.Font = new System.Drawing.Font("Anita  Semi-square", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.key_gen_label.ForeColor = System.Drawing.Color.White;
-            this.key_gen_label.Location = new System.Drawing.Point(84, 211);
+            this.key_gen_label.Location = new System.Drawing.Point(84, 319);
             this.key_gen_label.Name = "key_gen_label";
             this.key_gen_label.Size = new System.Drawing.Size(87, 27);
             this.key_gen_label.TabIndex = 6;
@@ -211,11 +217,10 @@
             // keyGenBox
             // 
             this.keyGenBox.Font = new System.Drawing.Font("Anita  Semi-square", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.keyGenBox.Location = new System.Drawing.Point(200, 210);
-            this.keyGenBox.MinimumSize = new System.Drawing.Size(4, 33);
+            this.keyGenBox.Location = new System.Drawing.Point(200, 319);
             this.keyGenBox.Name = "keyGenBox";
             this.keyGenBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.keyGenBox.Size = new System.Drawing.Size(225, 25);
+            this.keyGenBox.Size = new System.Drawing.Size(380, 25);
             this.keyGenBox.TabIndex = 5;
             this.keyGenBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -224,9 +229,9 @@
             this.genKey.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.genKey.Font = new System.Drawing.Font("Anita  Semi-square", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.genKey.ForeColor = System.Drawing.Color.White;
-            this.genKey.Location = new System.Drawing.Point(459, 210);
+            this.genKey.Location = new System.Drawing.Point(200, 350);
             this.genKey.Name = "genKey";
-            this.genKey.Size = new System.Drawing.Size(146, 33);
+            this.genKey.Size = new System.Drawing.Size(380, 33);
             this.genKey.TabIndex = 4;
             this.genKey.Text = "Generate";
             this.genKey.UseVisualStyleBackColor = true;
@@ -239,7 +244,7 @@
             this.IV_gen_label.AutoSize = true;
             this.IV_gen_label.Font = new System.Drawing.Font("Anita  Semi-square", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IV_gen_label.ForeColor = System.Drawing.Color.White;
-            this.IV_gen_label.Location = new System.Drawing.Point(108, 273);
+            this.IV_gen_label.Location = new System.Drawing.Point(108, 435);
             this.IV_gen_label.Name = "IV_gen_label";
             this.IV_gen_label.Size = new System.Drawing.Size(63, 27);
             this.IV_gen_label.TabIndex = 9;
@@ -248,11 +253,10 @@
             // genIvBox
             // 
             this.genIvBox.Font = new System.Drawing.Font("Anita  Semi-square", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.genIvBox.Location = new System.Drawing.Point(200, 273);
-            this.genIvBox.MinimumSize = new System.Drawing.Size(4, 33);
+            this.genIvBox.Location = new System.Drawing.Point(200, 435);
             this.genIvBox.Name = "genIvBox";
             this.genIvBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.genIvBox.Size = new System.Drawing.Size(225, 25);
+            this.genIvBox.Size = new System.Drawing.Size(380, 25);
             this.genIvBox.TabIndex = 8;
             this.genIvBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -261,9 +265,9 @@
             this.genIV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.genIV.Font = new System.Drawing.Font("Anita  Semi-square", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.genIV.ForeColor = System.Drawing.Color.White;
-            this.genIV.Location = new System.Drawing.Point(459, 273);
+            this.genIV.Location = new System.Drawing.Point(200, 466);
             this.genIV.Name = "genIV";
-            this.genIV.Size = new System.Drawing.Size(146, 33);
+            this.genIV.Size = new System.Drawing.Size(380, 33);
             this.genIV.TabIndex = 7;
             this.genIV.Text = "Generate";
             this.genIV.UseVisualStyleBackColor = true;
@@ -274,17 +278,87 @@
             // buildHighlight
             // 
             this.buildHighlight.BackColor = System.Drawing.Color.Black;
-            this.buildHighlight.Location = new System.Drawing.Point(206, 367);
+            this.buildHighlight.Location = new System.Drawing.Point(206, 586);
             this.buildHighlight.Name = "buildHighlight";
-            this.buildHighlight.Size = new System.Drawing.Size(392, 5);
+            this.buildHighlight.Size = new System.Drawing.Size(367, 5);
             this.buildHighlight.TabIndex = 10;
+            // 
+            // pictureBoxIcon
+            // 
+            this.pictureBoxIcon.Location = new System.Drawing.Point(611, 175);
+            this.pictureBoxIcon.MinimumSize = new System.Drawing.Size(100, 100);
+            this.pictureBoxIcon.Name = "pictureBoxIcon";
+            this.pictureBoxIcon.Size = new System.Drawing.Size(100, 100);
+            this.pictureBoxIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxIcon.TabIndex = 11;
+            this.pictureBoxIcon.TabStop = false;
+            // 
+            // pictureBoxPayload
+            // 
+            this.pictureBoxPayload.Location = new System.Drawing.Point(611, 69);
+            this.pictureBoxPayload.MinimumSize = new System.Drawing.Size(100, 100);
+            this.pictureBoxPayload.Name = "pictureBoxPayload";
+            this.pictureBoxPayload.Size = new System.Drawing.Size(100, 100);
+            this.pictureBoxPayload.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxPayload.TabIndex = 12;
+            this.pictureBoxPayload.TabStop = false;
+            // 
+            // checkBoxPersistence
+            // 
+            this.checkBoxPersistence.AutoSize = true;
+            this.checkBoxPersistence.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.checkBoxPersistence.Location = new System.Drawing.Point(200, 528);
+            this.checkBoxPersistence.Name = "checkBoxPersistence";
+            this.checkBoxPersistence.Size = new System.Drawing.Size(100, 20);
+            this.checkBoxPersistence.TabIndex = 13;
+            this.checkBoxPersistence.Text = "Persistence";
+            this.checkBoxPersistence.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.checkBox1.Location = new System.Drawing.Point(315, 528);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(96, 20);
+            this.checkBox1.TabIndex = 14;
+            this.checkBox1.Text = "Anti-Debug";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.checkBox2.Location = new System.Drawing.Point(422, 528);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(65, 20);
+            this.checkBox2.TabIndex = 15;
+            this.checkBox2.Text = "Delay";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.checkBox3.Location = new System.Drawing.Point(501, 528);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(79, 20);
+            this.checkBox3.TabIndex = 16;
+            this.checkBox3.Text = "Mutation";
+            this.checkBox3.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Desktop;
-            this.ClientSize = new System.Drawing.Size(761, 411);
+            this.ClientSize = new System.Drawing.Size(763, 633);
+            this.Controls.Add(this.checkBox3);
+            this.Controls.Add(this.checkBox2);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.checkBoxPersistence);
+            this.Controls.Add(this.pictureBoxPayload);
+            this.Controls.Add(this.pictureBoxIcon);
             this.Controls.Add(this.IV_gen_label);
             this.Controls.Add(this.genIvBox);
             this.Controls.Add(this.genIV);
@@ -308,6 +382,8 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.windowPanel.ResumeLayout(false);
             this.windowPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPayload)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -333,6 +409,12 @@
         private System.Windows.Forms.Button exit_button;
         private System.Windows.Forms.Panel buildHighlight;
         private System.Windows.Forms.Button help_button;
+        private System.Windows.Forms.PictureBox pictureBoxIcon;
+        private System.Windows.Forms.PictureBox pictureBoxPayload;
+        private System.Windows.Forms.CheckBox checkBoxPersistence;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox3;
     }
 }
 

@@ -92,9 +92,9 @@ namespace Blue_Lagoon_Crypter__Windowed_.Tools
         {
             try
             {
-                string[] referencedAsm = new string[]
+                string[] referencedAsm = new string[] // 09.09.2023 ___ 3:50 am ___ after changing the Stub and adding execution, added 'Threading.Thread.dll'
                 {
-                    "System.dll", "System.IO.dll", "System.Runtime.InteropServices.dll", "Mscorlib.dll", "System.Core.dll"
+                    "System.dll", "System.IO.dll", "System.Runtime.InteropServices.dll", "Mscorlib.dll", "System.Core.dll"//, "System.Diagnostics.dll"//, "System.Threading.Thread.dll"
                 };
                 Dictionary<string, string> providerOptions = new Dictionary<string, string>()
                 {

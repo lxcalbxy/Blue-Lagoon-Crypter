@@ -91,6 +91,8 @@ namespace Blue_Lagoon_Crypter__Windowed_
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
                     server_path.Text = ofd.FileName;
+                    Icon fileIcon = Icon.ExtractAssociatedIcon(ofd.FileName);
+                    pictureBoxPayload.Image = fileIcon.ToBitmap();
                 }
             }
         }
@@ -105,6 +107,8 @@ namespace Blue_Lagoon_Crypter__Windowed_
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
                     icon_path.Text = ofd.FileName;
+                    Icon fileIcon = Icon.ExtractAssociatedIcon(ofd.FileName);
+                    pictureBoxIcon.Image = fileIcon.ToBitmap();
                 }
             }
         }
