@@ -1,9 +1,9 @@
 # Blue-Lagoon-Crypter
 
-##[Fixing] [Debugging]
-###Work in progress.
-###Will appreciate any helpful comments! ;) ty <3
-NEED_DAMN_HELP_!!!
+## [Alpha 1.0.0]
+### Work in progress.
+### Will appreciate any helpful comments! ;) ty <3
+### #NEED_DAMN_HELP_!!!
 
 ![Screenshot_61](https://github.com/lxcalbxy/Blue-Lagoon-Crypter/assets/71847945/edad55e6-c332-488f-a350-1b5c525558ce)
 
