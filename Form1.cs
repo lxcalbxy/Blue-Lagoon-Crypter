@@ -290,5 +290,10 @@ namespace Blue_Lagoon_Crypter__Windowed_
                 Console.WriteLine("Error logging base64Aes: " + ex.Message);
             }
         }
+
+        private void OutputNameHolderLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

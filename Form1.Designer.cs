@@ -86,6 +86,7 @@
             this.server_path.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.server_path.Size = new System.Drawing.Size(380, 25);
             this.server_path.TabIndex = 1;
+            this.server_path.Text = "path to your .exe file";
             this.server_path.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.server_path.WordWrap = false;
             this.server_path.TextChanged += new System.EventHandler(this.server_path_TextChanged);
@@ -180,9 +181,9 @@
             this.server_path_label.ForeColor = System.Drawing.Color.White;
             this.server_path_label.Location = new System.Drawing.Point(85, 83);
             this.server_path_label.Name = "server_path_label";
-            this.server_path_label.Size = new System.Drawing.Size(86, 27);
+            this.server_path_label.Size = new System.Drawing.Size(83, 27);
             this.server_path_label.TabIndex = 3;
-            this.server_path_label.Text = "Exe :";
+            this.server_path_label.Text = "File :";
             this.server_path_label.Click += new System.EventHandler(this.label1_Click);
             // 
             // icon_path_label
@@ -392,11 +393,14 @@
             // OutputNameHolderLabel
             // 
             this.OutputNameHolderLabel.AutoSize = true;
-            this.OutputNameHolderLabel.Location = new System.Drawing.Point(367, 634);
+            this.OutputNameHolderLabel.ForeColor = System.Drawing.Color.White;
+            this.OutputNameHolderLabel.Location = new System.Drawing.Point(197, 64);
             this.OutputNameHolderLabel.Name = "OutputNameHolderLabel";
-            this.OutputNameHolderLabel.Size = new System.Drawing.Size(44, 16);
+            this.OutputNameHolderLabel.Size = new System.Drawing.Size(237, 16);
             this.OutputNameHolderLabel.TabIndex = 20;
-            this.OutputNameHolderLabel.Text = "label1";
+            this.OutputNameHolderLabel.Text = "Select \'Name\' to input your build name.";
+            this.OutputNameHolderLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.OutputNameHolderLabel.Click += new System.EventHandler(this.OutputNameHolderLabel_Click);
             // 
             // Form1
             // 

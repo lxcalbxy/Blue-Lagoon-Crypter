@@ -194,7 +194,7 @@ namespace Blue_Lagoon_Crypter__Windowed_.Tools
         {
             string OtpProgramName;
 
-            if (OutputProgramName.Length > 0)
+            if (OutputProgramName.Length > 0 && OutputProgramName != "Select 'Name' to input your build name.")
             {
                 return OtpProgramName = $"{OutputProgramName}.exe";
             }
